@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-record-deployment
+  # aarch64架构 MAC M1 Silicon
+spec:
+  replicas: 3 # 副本数量
+  selector:
+    matchLabels:
+      app: golang-record
+  template:
+    metadata:
+      labels:
+        app: golang-record
+    spec:
+      containers:
+        - name: golang-record
+          image: docker.io/chixuy/golang-record:v0.0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
