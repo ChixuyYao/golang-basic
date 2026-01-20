@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 	"errors"
-	"golang/internal/rbac/domain"
-	"golang/internal/rbac/repository"
+	"golang/internal/domain"
+	"golang/internal/repository"
 
 	"golang.org/x/crypto/bcrypt"
 )

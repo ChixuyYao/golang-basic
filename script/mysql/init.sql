@@ -1,2 +1,1 @@
-create database dbs;
-create database languages;
+create database books;

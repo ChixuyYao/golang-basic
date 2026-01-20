@@ -2,8 +2,8 @@ package repository
 
 import (
 	"context"
-	"golang/internal/languages/domain"
-	"golang/internal/languages/repository/dao"
+	"golang/internal/domain"
+	"golang/internal/repository/dao"
 	"time"
 )
 

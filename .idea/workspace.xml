@@ -1,7 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{}</component>
-  <component name="RunManager">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d0d74c11-d330-4133-89ec-882a602efe9a" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/internal/web/middleware/login_jwt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/web/middleware/login_jwt_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ioc/db.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ioc/web.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/dev.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/languages/domain/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/languages.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/languages/repository/dao/init.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/languages/repository/dao/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/languages.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/languages/repository/dao/partOfSpeech.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/partOfSpeech.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/languages/repository/dao/words.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/words.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/languages/repository/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/languages.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/languages/service/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/languages.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/languages/web/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/languages.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/rbac/domain/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/rbac/repository/dao/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/rbac/repository/dao/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/rbac/repository/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/rbac/service/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/rbac/web/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/uitls/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/uitls/uuid_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/mysql/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/script/mysql/init.sql" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$USER_HOME$/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.25.5.darwin-arm64" />
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {}
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ChixuyYao/golang-basic.git&quot;,
+    &quot;accountId&quot;: &quot;96b07148-0fec-467f-9d0a-44d557138360&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="38Vl3jHiCJuPD7fy5gd8Jr25BD2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go 构建.go build golang.executor&quot;: &quot;Debug&quot;,
+    &quot;Go 测试.golang/internal/rbac/web/middleware 中的 TestName.executor&quot;: &quot;Run&quot;,
+    &quot;Go 测试.golang/internal/uitls 中的 TestName.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;language&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/chis&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/internal/service" />
+      <recent name="$PROJECT_DIR$/internal/web" />
+      <recent name="$PROJECT_DIR$/internal/repository" />
+      <recent name="$PROJECT_DIR$/internal/domain" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go 构建.go build golang">
     <configuration name="go build golang" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="golang-basic" />
       <working_directory value="$PROJECT_DIR$" />
@@ -11,10 +114,61 @@
       <filePath value="$PROJECT_DIR$/main.go" />
       <method v="2" />
     </configuration>
+    <configuration name="golang/internal/rbac/web/middleware 中的 TestName" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="golang-basic" />
+      <working_directory value="$PROJECT_DIR$/internal/rbac/web/middleware" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="golang/internal/rbac/web/middleware" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestName\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="golang/internal/uitls 中的 TestName" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="golang-basic" />
+      <working_directory value="$PROJECT_DIR$/internal/uitls" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="golang/internal/uitls" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestName\E$" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go 构建.go build golang" />
+        <item itemvalue="Go 测试.golang/internal/rbac/web/middleware 中的 TestName" />
+        <item itemvalue="Go 测试.golang/internal/uitls 中的 TestName" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-72a9cf600ed8-dfa3e7267ae0-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-253.29346.379" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-GO-253.29346.379" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="d0d74c11-d330-4133-89ec-882a602efe9a" name="更改" comment="" />
+      <created>1768892421541</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1768892421541</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat:增加Language服务接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:增加Language服务接口" />
   </component>
 </project>

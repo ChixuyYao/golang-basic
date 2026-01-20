@@ -2,8 +2,8 @@ package service
 
 import (
 	"context"
-	"golang/internal/languages/domain"
-	"golang/internal/languages/repository"
+	"golang/internal/domain"
+	"golang/internal/repository"
 )
 
 type LanguagesService interface {

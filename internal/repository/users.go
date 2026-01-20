@@ -2,8 +2,8 @@ package repository
 
 import (
 	"context"
-	"golang/internal/rbac/domain"
-	"golang/internal/rbac/repository/dao"
+	"golang/internal/domain"
+	"golang/internal/repository/dao"
 )
 
 type UserRepository struct {

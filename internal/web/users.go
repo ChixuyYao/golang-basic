@@ -1,12 +1,14 @@
 package web
 
 import (
-	"golang/internal/rbac/domain"
-	"golang/internal/rbac/service"
+	"golang/internal/domain"
+	"golang/internal/service"
 	"net/http"
+	"time"
 
 	regexp "github.com/dlclark/regexp2"
 	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 type UserHandler struct {
@@ -86,6 +88,32 @@ func (h *UserHandler) SignUp(ctx *gin.Context) {
 func (h *UserHandler) Login(ctx *gin.Context) {
 
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+type UserClaims struct {
+	jwt.RegisteredClaims
+	Uid string
+}
+
+func (h *UserHandler) LoginJWT(ctx *gin.Context) {
+	uc := UserClaims{
+		Uid: "This is Uid",
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute * 30)), // JWT 有效期
+		},
+	}
+	// 生成JWT TOKEN
+	token := jwt.NewWithClaims(jwt.SigningMethodES512, uc)
+	// 签发JWT TOKEN
+	tokenstr, err := token.SignedString([]byte("secret"))
+	if err != nil {
+		// 签发错误
+	}
+	// 写入响应体,同时需要使用ExposeHeaders暴露到前台
+	ctx.Header("x-jwt-token", tokenstr)
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
 
 // Edit 用户编辑接口
 func (h *UserHandler) Edit(ctx *gin.Context) {

@@ -1,9 +1,9 @@
 package web
 
 import (
-	"golang/internal/languages/domain"
-	"golang/internal/languages/service"
-	res "golang/internal/uitls"
+	"golang/internal/domain"
+	"golang/internal/service"
+	res "golang/pkg"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,8 +20,8 @@ func NewLanguageHandler(svc service.LanguagesService) *LanguagesHandler {
 
 func (h *LanguagesHandler) RegisterRoutes(server *gin.Engine) {
 	ug := server.Group("/api/v1/languages")
-	ug.GET("/", h.GetLists)
-	ug.POST("/", h.CreateLanguage)
+	ug.GET("", h.GetLists)
+	ug.POST("", h.CreateLanguage)
 	ug.PUT("/:id", h.ModifyLanguageById)
 	ug.DELETE("/:id", h.RemoveLanguageById)
 }
