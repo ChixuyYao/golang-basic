@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"golang/config"
-	languageDao "golang/internal/languages/reoisitory/dao"
+	repository2 "golang/internal/languages/repository"
+	languageDao "golang/internal/languages/repository/dao"
+	service2 "golang/internal/languages/service"
+	langweb "golang/internal/languages/web"
 	"golang/internal/rbac/repository"
 	rbacDao "golang/internal/rbac/repository/dao"
 	"golang/internal/rbac/service"
@@ -26,7 +29,7 @@ func main() {
 
 	// 注册接口信息
 	initUserHandler(rbacDB, server) // 注册 user 相关接口
-
+	initLanguageHandler(langDB, server)
 	// 注册接口监听
 	server.Run(":8080")
 }
@@ -89,4 +92,12 @@ func initUserHandler(db *gorm.DB, server *gin.Engine) {
 	us := service.NewUserService(ur)
 	uh := web.NewUserHandler(us)
 	uh.RegistryRoutes(server)
+}
+
+func initLanguageHandler(db *gorm.DB, server *gin.Engine) {
+	ld := languageDao.NewLanguageDao(db)
+	lr := repository2.NewLanguageRepository(ld)
+	ls := service2.NewLanguagesService(lr)
+	lh := langweb.NewLanguageHandler(ls)
+	lh.RegisterRoutes(server)
 }
