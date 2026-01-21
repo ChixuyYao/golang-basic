@@ -2,50 +2,83 @@ package dao
 
 import (
 	"context"
+	"database/sql"
 	"errors"
-	"time"
 
 	"github.com/go-sql-driver/mysql"
 	"gorm.io/gorm"
 )
 
-type UserDao struct {
-	db *gorm.DB
+func NewUserDao(db *gorm.DB) UserDao {
+	return &GORMUsersDao{db: db}
 }
 
-func NewUserDao(db *gorm.DB) *UserDao {
-	return &UserDao{db: db}
+// UserDao 登录(查询),注册(插入),更改密码,邮箱,手机,账户状态(修改),注销账户(删除)
+type UserDao interface {
+	Select(ctx context.Context, entity Users) (Users, error)
+	Insert(ctx context.Context, entity Users) error
+	update(ctx context.Context, id string, entity Users) error
+	Delete(ctx context.Context, id string) error
 }
 
 var (
-	ErrDuplicateEmail = errors.New("邮箱已经存在")
+	ErrDuplicate      = errors.New("邮箱,手机号码存在冲突")
 	ErrRecordNotFound = gorm.ErrRecordNotFound
 )
 
-func (dao *UserDao) Insert(ctx context.Context, u User) error {
-	now := time.Now().UnixMilli() // 当前时间的毫秒数
-	u.CTime = now
-	u.UTime = now
-	err := dao.db.WithContext(ctx).Create(&u).Error
+type GORMUsersDao struct {
+	db *gorm.DB
+}
+
+// Select 查询USER数据(EX:用户登录)
+func (dao *GORMUsersDao) Select(ctx context.Context, entity Users) (Users, error) {
+	var user Users
+	err := dao.db.WithContext(ctx).
+		//Where(&Users{Password: entity.Password}).
+		Or(&Users{Email: entity.Email, Phone: entity.Phone}).
+		First(&user).
+		Error
+	return user, err
+}
+
+// Insert 插入USER数据(EX:用户注册)
+func (dao *GORMUsersDao) Insert(ctx context.Context, entity Users) error {
+
+	err := dao.db.WithContext(ctx).Create(&entity).Error
 	if me, ok := err.(*mysql.MySQLError); ok {
-		const duplicateErr uint16 = 1062
+		const duplicateErr uint16 = 1062 // 数据冲突
 		if me.Number == duplicateErr {
-			// 邮箱冲突(用户冲突)
-			return ErrDuplicateEmail
+			return ErrDuplicate
 		}
+
 	}
 	return err
 }
 
-// User 数据库表的字段
-type User struct {
-	Id       int64  `gorm:"primary_key,auto_increment"`
-	Email    string `gorm:"unique"`
-	Password string
+func (dao *GORMUsersDao) update(ctx context.Context, id string, entity Users) error {
+	//TODO implement me
+	return nil
+}
 
-	// 创建时间,更新时间(UTC +0)
-	CTime int64
-	UTime int64
+func (dao *GORMUsersDao) Delete(ctx context.Context, id string) error {
+	//TODO implement me
+	return nil
+}
 
-	// 如果需要存储JSON,则使用String类型
+// Users ABAC数据表预留
+type Users struct {
+	Id        string         `gorm:"type:varchar(255);primaryKey;comment:用户ID(PK);"`
+	Username  string         `gorm:"type:varchar(255);comment:用户昵称;"`
+	Password  string         `gorm:"comment:用户密码(加密);not null;"`
+	Email     sql.NullString `gorm:"type:varchar(255);comment:邮箱账户(用于登录);uniqueIndex;"`
+	Phone     sql.NullString `gorm:"type:varchar(128);comment:手机号码(用于登录);uniqueIndex;"`
+	State     int            `gorm:"comment:账户状态(0=正常,1=冻结,2=停用);"`
+	CreatedAt int64          `gorm:"comment:创建时间;"`
+	UpdatedAt int64          `gorm:"comment:更新时间;"`
+	LastLogin int64          `gorm:"comment:最后登录时间;"`
+	// 关联关系
+	//Attributes []UserAttribute         `gorm:"foreignKey:UserID" json:"attributes,omitempty"`
+	//AccessLogs []AccessLog            `gorm:"foreignKey:UserID" json:"access_logs,omitempty"`
+	//Contexts   []EnvironmentContext   `gorm:"foreignKey:UserID" json:"contexts,omitempty"`
+	//Policies   []Policy               `gorm:"many2many:policy_targets;" json:"policies,omitempty"`
 }

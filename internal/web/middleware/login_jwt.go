@@ -14,10 +14,16 @@ import (
 type LoginJWTMiddlewareBuilder struct {
 }
 
+func NewLoginJWTMiddlewareBuilder() *LoginJWTMiddlewareBuilder {
+	return &LoginJWTMiddlewareBuilder{}
+}
 func (m *LoginJWTMiddlewareBuilder) CheckLogin() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		path := c.Request.URL.Path
-		allowURL := []string{"/users/signup", "/users/login"}
+		allowURL := []string{
+			"/api/v1/users/signup",
+			"/api/v1/users/login",
+		}
 		for _, url := range allowURL {
 			if url == path {
 				return // 对该请求地址不予校验
@@ -41,7 +47,7 @@ func (m *LoginJWTMiddlewareBuilder) CheckLogin() gin.HandlerFunc {
 		var uc web.UserClaims
 		token, err := jwt.ParseWithClaims(tokenStr, &uc, func(token *jwt.Token) (interface{}, error) {
 			// 前述登录方法中用于签发JWT的Key值
-			return "secret", nil
+			return web.JWTKey, nil
 		})
 		if err != nil {
 			// 伪造的TOKEN信息

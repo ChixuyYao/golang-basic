@@ -5,33 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0d74c11-d330-4133-89ec-882a602efe9a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/internal/web/middleware/login_jwt.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/web/middleware/login_jwt_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ioc/db.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ioc/web.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wire.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/domain/user_attributes.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repository/dao/user_attributes.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ioc/gorm_hooks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2dde1bc3-14cd-44bf-b3e9-38e298f100a6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2dde1bc3-14cd-44bf-b3e9-38e298f100a6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/dev.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/languages/domain/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/languages.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/languages/repository/dao/init.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/languages/repository/dao/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/languages.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/languages/repository/dao/partOfSpeech.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/partOfSpeech.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/languages/repository/dao/words.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/words.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/languages/repository/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/languages.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/languages/service/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/languages.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/languages/web/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/languages.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/rbac/domain/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/rbac/repository/dao/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/rbac/repository/dao/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/rbac/repository/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/rbac/service/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/rbac/web/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/uitls/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/response.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/uitls/uuid_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/mysql/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/script/mysql/init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/web/middleware/login_jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/middleware/login_jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/web/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ioc/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/ioc/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ioc/web.go" beforeDir="false" afterPath="$PROJECT_DIR$/ioc/web.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wire_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/wire_gen.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,24 +67,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go 构建.go build golang.executor&quot;: &quot;Debug&quot;,
-    &quot;Go 测试.golang/internal/rbac/web/middleware 中的 TestName.executor&quot;: &quot;Run&quot;,
-    &quot;Go 测试.golang/internal/uitls 中的 TestName.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;language&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/chis&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go 构建.go build golang.executor": "Debug",
+    "Go 测试.golang/internal/rbac/web/middleware 中的 TestName.executor": "Run",
+    "Go 测试.golang/internal/uitls 中的 TestName.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "language",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/chis/Desktop/golang-basic/internal/domain"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/internal/domain" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/internal/service" />
@@ -169,6 +161,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat:增加Language服务接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:增加Language服务接口" />
+    <MESSAGE value="fix:调整整体项目结构,矫正Languages模块代码,改由google-wire生成&#10;-待修改:User模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:调整整体项目结构,矫正Languages模块代码,改由google-wire生成&#10;-待修改:User模块" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="GoApplicationRunConfiguration">
+        <watch expression="*(*&quot;[]uint8&quot;)(1374389742792)" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

@@ -9,7 +9,9 @@ import (
 )
 
 func InitDB() *gorm.DB {
-	db, err := gorm.Open(mysql.Open(config.BookConfig.DB.DSN))
+	db, err := gorm.Open(mysql.Open(config.BookConfig.DB.DSN), &gorm.Config{
+		DisableForeignKeyConstraintWhenMigrating: true, // 禁用数据库外键约束生成
+	})
 	if err != nil {
 		panic(err) //数据库启动失败,终止进程
 	}
