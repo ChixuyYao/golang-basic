@@ -4,23 +4,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0d74c11-d330-4133-89ec-882a602efe9a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/internal/domain/user_attributes.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repository/dao/user_attributes.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ioc/gorm_hooks.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2dde1bc3-14cd-44bf-b3e9-38e298f100a6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2dde1bc3-14cd-44bf-b3e9-38e298f100a6.xml" afterDir="false" />
+    <list default="true" id="d0d74c11-d330-4133-89ec-882a602efe9a" name="更改" comment="feat:增加JWT方式校验用户,变更User模块内容">
+      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder/categories.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder/goals.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder/taskPrerequisites.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder/tasks.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repository/dao/users_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/domain/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/dao/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/dao/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/service/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/web/middleware/login_jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/middleware/login_jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/web/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ioc/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/ioc/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ioc/web.go" beforeDir="false" afterPath="$PROJECT_DIR$/ioc/web.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/wire.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wire_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/wire_gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,10 +44,17 @@
     &quot;accountId&quot;: &quot;96b07148-0fec-467f-9d0a-44d557138360&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/internal/repository/dao/reminder/taskPrerequisites.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$USER_HOME$/go/pkg/mod/github.com/golang-jwt/jwt/v5@v5.3.0/token.go" root0="SKIP_INSPECTION" />
+  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -71,7 +70,11 @@
   "keyToString": {
     "DefaultGoTemplateProperty": "Go File",
     "Go 构建.go build golang.executor": "Debug",
+    "Go 测试.go test golang/internal/repository/dao.executor": "Run",
     "Go 测试.golang/internal/rbac/web/middleware 中的 TestName.executor": "Run",
+    "Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Insert.executor": "Run",
+    "Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Select.executor": "Debug",
+    "Go 测试.golang/internal/repository/dao 中的 TestName.executor": "Run",
     "Go 测试.golang/internal/uitls 中的 TestName.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -81,11 +84,13 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "language",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/chis/Desktop/golang-basic/internal/domain"
+    "last_opened_file_path": "/Users/chis/Desktop/golang-basic/internal/repository/dao/reminder",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/internal/repository/dao/reminder" />
       <recent name="$PROJECT_DIR$/internal/domain" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -96,7 +101,7 @@
       <recent name="$PROJECT_DIR$/internal/domain" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 构建.go build golang">
+  <component name="RunManager" selected="Go 测试.go test golang/internal/repository/dao">
     <configuration name="go build golang" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="golang-basic" />
       <working_directory value="$PROJECT_DIR$" />
@@ -106,24 +111,47 @@
       <filePath value="$PROJECT_DIR$/main.go" />
       <method v="2" />
     </configuration>
-    <configuration name="golang/internal/rbac/web/middleware 中的 TestName" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="go test golang/internal/repository/dao" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="golang-basic" />
-      <working_directory value="$PROJECT_DIR$/internal/rbac/web/middleware" />
+      <working_directory value="$PROJECT_DIR$/internal/repository/dao" />
       <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="golang/internal/rbac/web/middleware" />
+      <package value="golang/internal/repository/dao" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestName\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="golang/internal/uitls 中的 TestName" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="golang/internal/repository/dao 中的 TestGORMUsersDao_Insert" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="golang-basic" />
-      <working_directory value="$PROJECT_DIR$/internal/uitls" />
+      <working_directory value="$PROJECT_DIR$/internal/repository/dao" />
       <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="golang/internal/uitls" />
+      <package value="golang/internal/repository/dao" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestGORMUsersDao_Insert\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="golang/internal/repository/dao 中的 TestGORMUsersDao_Select" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="golang-basic" />
+      <working_directory value="$PROJECT_DIR$/internal/repository/dao" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="golang/internal/repository/dao" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestGORMUsersDao_Select\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="golang/internal/repository/dao 中的 TestName" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="golang-basic" />
+      <working_directory value="$PROJECT_DIR$/internal/repository/dao" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="golang/internal/repository/dao" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
@@ -132,9 +160,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 测试.go test golang/internal/repository/dao" />
+        <item itemvalue="Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Select" />
+        <item itemvalue="Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Insert" />
+        <item itemvalue="Go 测试.golang/internal/repository/dao 中的 TestName" />
         <item itemvalue="Go 构建.go build golang" />
-        <item itemvalue="Go 测试.golang/internal/rbac/web/middleware 中的 TestName" />
-        <item itemvalue="Go 测试.golang/internal/uitls 中的 TestName" />
       </list>
     </recent_temporary>
   </component>
@@ -162,9 +192,19 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat:增加Language服务接口" />
     <MESSAGE value="fix:调整整体项目结构,矫正Languages模块代码,改由google-wire生成&#10;-待修改:User模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:调整整体项目结构,矫正Languages模块代码,改由google-wire生成&#10;-待修改:User模块" />
+    <MESSAGE value="feat:增加JWT方式校验用户,变更User模块内容" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:增加JWT方式校验用户,变更User模块内容" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/web/middleware/login_jwt.go</url>
+          <line>33</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="GoApplicationRunConfiguration">
         <watch expression="*(*&quot;[]uint8&quot;)(1374389742792)" />
