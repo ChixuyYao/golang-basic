@@ -4,15 +4,39 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0d74c11-d330-4133-89ec-882a602efe9a" name="更改" comment="feat:增加JWT方式校验用户,变更User模块内容">
-      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder/categories.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder/goals.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder/taskPrerequisites.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder/tasks.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repository/dao/users_test.go" afterDir="false" />
+    <list default="true" id="d0d74c11-d330-4133-89ec-882a602efe9a" name="更改" comment="feat:增加Reminder模块表设计(初步设计:注释)">
+      <change afterPath="$PROJECT_DIR$/internal/domain/goals.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/domain/reminder.categories.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/domain/tasks.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repository/categories.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder.categories.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder.goals.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder.tasks.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/service/categories.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/web/categories.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/web/ijwt/redis.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/web/ijwt/types.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/web/result.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/world.languages.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/partOfSpeech.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/world.partOfSpeech.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder/categories.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder/goals.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder/taskPrerequisites.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/reminder.taskPrerequisites.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder/tasks.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/words.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/world.words.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/web/middleware/login_jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/middleware/login_jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/web/middleware/login_jwt_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/web/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/users.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ioc/gorm_hooks.go" beforeDir="false" afterPath="$PROJECT_DIR$/ioc/gorm_hooks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ioc/web.go" beforeDir="false" afterPath="$PROJECT_DIR$/ioc/web.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wire_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/wire_gen.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +94,7 @@
   "keyToString": {
     "DefaultGoTemplateProperty": "Go File",
     "Go 构建.go build golang.executor": "Debug",
-    "Go 测试.go test golang/internal/repository/dao.executor": "Run",
+    "Go 测试.go test golang/internal/repository/dao.executor": "Debug",
     "Go 测试.golang/internal/rbac/web/middleware 中的 TestName.executor": "Run",
     "Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Insert.executor": "Run",
     "Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Select.executor": "Debug",
@@ -84,24 +108,28 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "language",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/chis/Desktop/golang-basic/internal/repository/dao/reminder",
+    "last_opened_file_path": "/Users/chis/Desktop/项目综合汇总/golang-basic",
+    "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/internal/repository/dao/reminder" />
+      <recent name="$PROJECT_DIR$/internal/web" />
+      <recent name="$PROJECT_DIR$/internal/service" />
+      <recent name="$PROJECT_DIR$/internal/domain/reminder" />
       <recent name="$PROJECT_DIR$/internal/domain" />
+      <recent name="$PROJECT_DIR$/internal/repository/dao/reminder" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/internal/repository/dao" />
+      <recent name="$PROJECT_DIR$/internal/domain" />
+      <recent name="$PROJECT_DIR$/internal/domain/reminder" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/internal/service" />
-      <recent name="$PROJECT_DIR$/internal/web" />
-      <recent name="$PROJECT_DIR$/internal/repository" />
-      <recent name="$PROJECT_DIR$/internal/domain" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 测试.go test golang/internal/repository/dao">
+  <component name="RunManager" selected="Go 构建.go build golang">
     <configuration name="go build golang" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="golang-basic" />
       <working_directory value="$PROJECT_DIR$" />
@@ -160,11 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 构建.go build golang" />
         <item itemvalue="Go 测试.go test golang/internal/repository/dao" />
         <item itemvalue="Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Select" />
         <item itemvalue="Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Insert" />
         <item itemvalue="Go 测试.golang/internal/repository/dao 中的 TestName" />
-        <item itemvalue="Go 构建.go build golang" />
       </list>
     </recent_temporary>
   </component>
@@ -193,15 +221,21 @@
     <MESSAGE value="feat:增加Language服务接口" />
     <MESSAGE value="fix:调整整体项目结构,矫正Languages模块代码,改由google-wire生成&#10;-待修改:User模块" />
     <MESSAGE value="feat:增加JWT方式校验用户,变更User模块内容" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:增加JWT方式校验用户,变更User模块内容" />
+    <MESSAGE value="feat:增加Reminder模块表设计(初步设计:注释)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:增加Reminder模块表设计(初步设计:注释)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/internal/web/middleware/login_jwt.go</url>
-          <line>33</line>
-          <option name="timeStamp" value="26" />
+          <url>file://$PROJECT_DIR$/internal/service/categories.go</url>
+          <line>26</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/web/categories.go</url>
+          <line>28</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

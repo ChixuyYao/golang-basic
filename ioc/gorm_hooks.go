@@ -17,7 +17,7 @@ func NewGormHooks() *GormHooks {
 
 func (hook *GormHooks) InitHooks(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		db.Callback().Create().Before("gorm:create").Register("global:before_create", hook.beforeCreate)
+		db.Callback().Create().Before("gorm:create").Register("Id-Created_At-Update_At", hook.beforeCreate)
 	}
 }
 

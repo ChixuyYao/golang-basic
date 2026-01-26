@@ -20,15 +20,19 @@ func InitWebServer() *gin.Engine {
 		// Dao层初始化
 		dao.NewLanguageDao,
 		dao.NewUserDao,
+		dao.NewCategoriesDao,
 		// Repository层初始化
 		repository.NewLanguageRepository,
 		repository.NewUserRepository,
+		repository.NewCategoriesRepository,
 		// Service层初始化
 		service.NewLanguagesService,
 		service.NewUserService,
+		service.NewCategoriesService,
 		// Handler服务(路由挂载)
 		web.NewLanguageHandler,
 		web.NewUserHandler,
+		web.NewCategoriesHandler,
 
 		// 服务器本身依赖
 		ioc.InitGinMiddleware,

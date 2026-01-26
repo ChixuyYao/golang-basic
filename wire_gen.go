@@ -28,6 +28,10 @@ func InitWebServer() *gin.Engine {
 	userRepository := repository.NewUserRepository(userDao)
 	userService := service.NewUserService(userRepository)
 	usersHandler := web.NewUserHandler(userService)
-	engine := ioc.InitWebServer(v, languagesHandler, usersHandler)
+	categoriesDao := dao.NewCategoriesDao(db)
+	categoriesRepository := repository.NewCategoriesRepository(categoriesDao)
+	categoriesService := service.NewCategoriesService(categoriesRepository)
+	categoriesHandler := web.NewCategoriesHandler(categoriesService)
+	engine := ioc.InitWebServer(v, languagesHandler, usersHandler, categoriesHandler)
 	return engine
 }

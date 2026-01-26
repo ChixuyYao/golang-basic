@@ -3,8 +3,9 @@ package web
 import (
 	"golang/internal/domain"
 	"golang/internal/service"
+	"golang/internal/web/ijwt"
 	res "golang/pkg"
-	"time"
+	"net/http"
 
 	regexp "github.com/dlclark/regexp2"
 	"github.com/gin-gonic/gin"
@@ -12,16 +13,18 @@ import (
 )
 
 type UsersHandler struct {
+	ijwt.Handler
 	emailRegExp    *regexp.Regexp
 	passwordRegExp *regexp.Regexp
 	svc            service.UserService
 }
 
-func NewUserHandler(svc service.UserService) *UsersHandler {
+func NewUserHandler(svc service.UserService, handler ijwt.Handler) *UsersHandler {
 	return &UsersHandler{
 		emailRegExp:    regexp.MustCompile(emailRegexPattern, regexp.None),
 		passwordRegExp: regexp.MustCompile(passwordRegexPattern, regexp.None),
 		svc:            svc,
+		Handler:        handler,
 	}
 }
 
@@ -101,7 +104,7 @@ func (h *UsersHandler) UserLogin(ctx *gin.Context) {
 	user, err := h.svc.UserLogin(ctx, request.Email, request.Phone, request.Password)
 	switch err {
 	case nil:
-		err = h.SetJWTToken(ctx, user.Id)
+		err = h.SetLoginToken(ctx, user.Id)
 		if err != nil {
 			res.Failed(ctx)
 			return
@@ -122,30 +125,42 @@ func (h *UsersHandler) UserLogin(ctx *gin.Context) {
 	}
 }
 
-// -----JWT签发部分----------------------------------------------------------------------------------------------------
-
-type UserClaims struct {
-	jwt.RegisteredClaims
-	Uid string
+func (h *UsersHandler) UserLogout(ctx *gin.Context) {
+	err := h.ClearToken(ctx)
+	if err != nil {
+		res.FailedWithMsg(ctx, "服务错误")
+		return
+	}
+	res.SuccessWithMsg(ctx, "退出登录成功!", nil)
 }
 
-var JWTKey = []byte("k6CswdUm77WKcbM68UQUuxVsHSpTCwgK")
+// RefreshToken 提供token重新签发
+func (h *UsersHandler) RefreshToken(ctx *gin.Context) {
+	// 按约定,JWT签发的TOKEN需要于请求头中的Authorization中带回(Bearer xxx)
+	tokenStr := h.ExtractToken(ctx)
 
-func (h *UsersHandler) SetJWTToken(ctx *gin.Context, uid string) error {
-	uc := UserClaims{
-		Uid: uid,
-		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute * 30)), // JWT 有效期
-		},
-	}
-	// 生成JWT TOKEN
-	token := jwt.NewWithClaims(jwt.SigningMethodHS512, uc)
-	// 签发JWT TOKEN
-	JWT, err := token.SignedString(JWTKey)
+	var rc ijwt.RefreshClaims
+	token, err := jwt.ParseWithClaims(tokenStr, &rc, func(token *jwt.Token) (interface{}, error) {
+		return ijwt.RefreshKey, nil
+	})
 	if err != nil {
-		return err
+		ctx.AbortWithStatus(http.StatusUnauthorized)
+		return
 	}
-	// 写入响应体,同时需要使用ExposeHeaders暴露到前台
-	ctx.Header("x-jwt-token", JWT)
-	return nil
+	if !token.Valid { // token == nil || !token.Valid || expireTime.Before(time.now())
+		ctx.AbortWithStatus(http.StatusUnauthorized)
+		return
+	}
+	err = h.CheckSession(ctx, rc.Ssid)
+	if err != nil { // Token或Redis存在异常
+		ctx.AbortWithStatus(http.StatusUnauthorized)
+		return
+	}
+
+	err = h.SetJWTToken(ctx, rc.Uid, rc.Ssid)
+	if err != nil {
+		ctx.AbortWithStatus(http.StatusUnauthorized)
+		return
+	}
+	res.SuccessWithMsg(ctx, "刷新成功!", nil)
 }

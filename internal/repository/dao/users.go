@@ -43,7 +43,6 @@ func (dao *GORMUsersDao) Select(ctx context.Context, entity Users) (Users, error
 
 // Insert 插入USER数据(EX:用户注册)
 func (dao *GORMUsersDao) Insert(ctx context.Context, entity Users) error {
-
 	err := dao.db.WithContext(ctx).Create(&entity).Error
 	if me, ok := err.(*mysql.MySQLError); ok {
 		const duplicateErr uint16 = 1062 // 数据冲突

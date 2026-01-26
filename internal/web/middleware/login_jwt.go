@@ -1,22 +1,23 @@
 package middleware
 
 import (
-	"golang/internal/web"
-	"log"
+	"golang/internal/web/ijwt"
 	"net/http"
-	"strings"
-	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 )
 
 type LoginJWTMiddlewareBuilder struct {
+	ijwt.Handler
 }
 
-func NewLoginJWTMiddlewareBuilder() *LoginJWTMiddlewareBuilder {
-	return &LoginJWTMiddlewareBuilder{}
+func NewLoginJWTMiddlewareBuilder(hdl ijwt.Handler) *LoginJWTMiddlewareBuilder {
+	return &LoginJWTMiddlewareBuilder{
+		Handler: hdl,
+	}
 }
+
 func (m *LoginJWTMiddlewareBuilder) CheckLogin() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		path := c.Request.URL.Path
@@ -31,44 +32,48 @@ func (m *LoginJWTMiddlewareBuilder) CheckLogin() gin.HandlerFunc {
 		}
 
 		// 按约定,JWT签发的TOKEN需要于请求头中的Authorization中带回(Bearer xxx)
-		authCode := c.GetHeader("Authorization")
-		if authCode == "" {
-			// 不存在TOKEN信息,无登录态
-			c.AbortWithStatus(http.StatusUnauthorized)
-			return
-		}
-		segments := strings.Split(authCode, " ")
-		if len(segments) != 2 {
-			// TOKEN信息无效,无登录态
-			c.AbortWithStatus(http.StatusUnauthorized)
-			return
-		}
-		tokenStr := segments[1]
-		var uc web.UserClaims
+		tokenStr := m.ExtractToken(c)
+
+		var uc ijwt.UserClaims
 		token, err := jwt.ParseWithClaims(tokenStr, &uc, func(token *jwt.Token) (interface{}, error) {
 			// 前述登录方法中用于签发JWT的Key值
-			return web.JWTKey, nil
+			return ijwt.JwtKey, nil
 		})
 		if err != nil {
 			// 伪造的TOKEN信息
+			c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized, "message": "用户身份认证无效,请尝试重新登录!"})
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
 		if !token.Valid { // token == nil || !token.Valid || expireTime.Before(time.now())
 			// 解析TOKEN为非法形式,过期形式
+			c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized, "message": "用户身份认证无效,请尝试重新登录!"})
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
-		expireTime := uc.ExpiresAt
+		//expireTime := uc.ExpiresAt
 
 		// ExpireTime - Now = Keep Refresh Duration
-		if expireTime.Sub(time.Now()) < time.Minute*5 {
-			uc.ExpiresAt = jwt.NewNumericDate(time.Now().Add(time.Minute * 30))
-			tokenStr, err = token.SignedString([]byte("secret"))
-			c.Header("x-jwt-token", tokenStr)
-			if err != nil {
-				log.Println()
-			}
+		//if expireTime.Sub(time.Now()) < time.Minute*5 {
+		//	uc.ExpiresAt = ijwt.NewNumericDate(time.Now().Add(time.Minute * 30))
+		//	tokenStr, err = token.SignedString([]byte("secret"))
+		//	c.Header("x-ijwt-token", tokenStr)
+		//	if err != nil {
+		//		log.Println()
+		//	}
+		//}
+
+		// 前述Token校验后,查阅Redis
+		//cnd, err := m.cmd.Exists(c, fmt.Sprintf("users:ssid:%s", uc.Ssid)).Result()
+		//if err != nil || cnd > 0 {
+		//	c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized, "message": "用户身份认证无效,请尝试重新登录!"})
+		//	c.AbortWithStatus(http.StatusUnauthorized)
+		//}
+
+		err = m.CheckSession(c, uc.Ssid)
+		if err != nil {
+			c.AbortWithStatus(http.StatusUnauthorized)
+			return
 		}
 		c.Set("uc", uc)
 	}

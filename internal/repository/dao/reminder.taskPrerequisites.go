@@ -1,4 +1,4 @@
-package reminder
+package dao
 
 // NewTaskPrerequisitesDao 前置条件表
 func NewTaskPrerequisitesDao() TaskPrerequisitesDao {
@@ -6,6 +6,40 @@ func NewTaskPrerequisitesDao() TaskPrerequisitesDao {
 }
 
 type TaskPrerequisitesDao interface {
+}
+
+type TaskPrerequisites struct {
+	Id              string `gorm:"type:varchar(255);primaryKey;comment:目标ID(PK);"`
+	GoalId          string `gorm:"type:varchar(255);comment:目标ID(FK);"`
+	ConditionConfig string `gorm:"comment:条件配置(JSON);"`
+	// 条件配置参考
+	// {
+	//  "condition_type": "basic",
+	//  "basic_config": {
+	//    "type": "task_status",  // 条件类型: task_status, task_progress, checkpoint, time, custom, etc.
+	//    "target_type": "task",  // 目标类型: task, goal, category, system
+	//    "target_id": 123,       // 目标ID (当target_type为task/goal/category时)
+	//
+	//    // 条件具体配置
+	//    "config": {
+	//      "required_status": "completed",  // 对于task_status类型
+	//      "required_progress": 50,         // 对于task_progress类型
+	//      "checkpoint_id": 456,            // 对于checkpoint类型
+	//      // ... 其他类型的具体配置
+	//    },
+	//
+	//    // 条件运算符
+	//    "operator": "and",      // and, or, not, xor
+	//    "negate": false,        // 是否取反
+	//    "priority": 1           // 优先级 (1-10, 1最高)
+	//  }
+	//}
+	IsActive       int   `gorm:"comment:是否活跃状态;"`
+	IsSatisfied    int   `gorm:"comment:是否满足条件;"`
+	EvaluatedAt    int   `gorm:"comment:条件评估时间;"`
+	EvaluatedCount int   `gorm:"comment:条件评估次数;"`
+	CreatedAt      int64 `gorm:"comment:创建时间;"`
+	UpdatedAt      int64 `gorm:"comment:更新时间;"`
 }
 
 /*

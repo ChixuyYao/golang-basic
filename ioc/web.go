@@ -14,11 +14,13 @@ func InitWebServer(
 	middlewares []gin.HandlerFunc,
 	languageHdl *web.LanguagesHandler,
 	userHdl *web.UsersHandler,
+	categoryHdl *web.CategoriesHandler,
 ) *gin.Engine {
 	server := gin.Default()
 	server.Use(middlewares...)
 	languageHdl.RegisterRoutes(server)
 	userHdl.RegistryRoutes(server)
+	categoryHdl.RegistryRoutes(server)
 	return server
 }
 
