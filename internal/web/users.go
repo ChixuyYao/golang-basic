@@ -4,7 +4,7 @@ import (
 	"golang/internal/domain"
 	"golang/internal/service"
 	"golang/internal/web/ijwt"
-	res "golang/pkg"
+	"golang/pkg/ginx"
 	"net/http"
 
 	regexp "github.com/dlclark/regexp2"
@@ -51,25 +51,25 @@ func (h *UsersHandler) UserSignup(ctx *gin.Context) {
 	var request Request
 	// 请求体解析失败
 	if err := ctx.Bind(&request); err != nil {
-		res.Failed(ctx)
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "服务器繁忙..."})
 		return
 	}
 
 	// 邮箱校验
 	isEmail, err := h.emailRegExp.MatchString(request.Email)
 	if err != nil || !isEmail {
-		res.FailedWithMsg(ctx, "邮箱格式错误,请重试")
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "邮箱格式错误,请重试"})
 		return
 	}
 
 	// 密码校验
 	if request.Password != request.ConfirmPassword {
-		res.FailedWithMsg(ctx, "两次密码输入不一致,请重试")
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "两次密码输入不一致,请重试"})
 		return
 	}
 	isPassword, err := h.passwordRegExp.MatchString(request.Password)
 	if err != nil || !isPassword {
-		res.FailedWithMsg(ctx, "密码格式错误,请重试")
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "密码格式错误,请重试"})
 		return
 	}
 
@@ -80,11 +80,12 @@ func (h *UsersHandler) UserSignup(ctx *gin.Context) {
 
 	switch err {
 	case nil:
-		res.SuccessWithMsg(ctx, "账户注册成功", nil)
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "注册成功"})
 	case service.ErrDuplicateEmail:
-		res.FailedWithMsg(ctx, "邮箱冲突,请更换后重试")
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "邮箱冲突,请重试"})
 	default:
-		res.FailedWithMsg(ctx, "服务错误")
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "服务器繁忙..."})
+
 	}
 }
 
@@ -97,7 +98,7 @@ func (h *UsersHandler) UserLogin(ctx *gin.Context) {
 	}
 	var request Request
 	if err := ctx.Bind(&request); err != nil {
-		res.Failed(ctx)
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "服务器繁忙..."})
 		return
 	}
 
@@ -106,7 +107,7 @@ func (h *UsersHandler) UserLogin(ctx *gin.Context) {
 	case nil:
 		err = h.SetLoginToken(ctx, user.Id)
 		if err != nil {
-			res.Failed(ctx)
+			ctx.JSON(http.StatusOK, ginx.Result{Msg: "服务器繁忙..."})
 			return
 		}
 		type Response struct {
@@ -114,24 +115,21 @@ func (h *UsersHandler) UserLogin(ctx *gin.Context) {
 			Username string `json:"username"`
 		}
 
-		res.SuccessWithMsg(ctx, "登录成功", Response{
-			Id:       user.Id,
-			Username: user.Username,
-		})
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "登录成功", Data: Response{Id: user.Username, Username: user.Username}})
 	case service.ErrInvalidUserOrPassword:
-		res.FailedWithMsg(ctx, "账户,密码错误")
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "用户名,密码错误"})
 	default:
-		res.FailedWithMsg(ctx, "服务错误")
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "服务器繁忙..."})
 	}
 }
 
 func (h *UsersHandler) UserLogout(ctx *gin.Context) {
 	err := h.ClearToken(ctx)
 	if err != nil {
-		res.FailedWithMsg(ctx, "服务错误")
+		ctx.JSON(http.StatusOK, ginx.Result{Msg: "服务器繁忙..."})
 		return
 	}
-	res.SuccessWithMsg(ctx, "退出登录成功!", nil)
+	ctx.JSON(http.StatusOK, ginx.Result{Msg: "退出登录成功"})
 }
 
 // RefreshToken 提供token重新签发
@@ -151,8 +149,8 @@ func (h *UsersHandler) RefreshToken(ctx *gin.Context) {
 		ctx.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
-	err = h.CheckSession(ctx, rc.Ssid)
-	if err != nil { // Token或Redis存在异常
+	//err = h.CheckSession(ctx, rc.Ssid)
+	if err != nil { // Token 或 Redis存在异常
 		ctx.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
@@ -162,5 +160,5 @@ func (h *UsersHandler) RefreshToken(ctx *gin.Context) {
 		ctx.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
-	res.SuccessWithMsg(ctx, "刷新成功!", nil)
+	ctx.JSON(http.StatusOK, ginx.Result{Msg: "刷新成功"})
 }

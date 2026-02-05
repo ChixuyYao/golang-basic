@@ -1,0 +1,7 @@
+# Prometheus 采用主动拉取数据的模型
+scrape_configs:
+  - job_name: "golang_basic"
+    scrape_interval: 5s
+    scrape_timeout: 3s
+    static_configs:
+      - targets: ["host.docker.internal:8081"] # 指定项目服务地址

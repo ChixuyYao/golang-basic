@@ -3,6 +3,7 @@ package ijwt
 import (
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -15,19 +16,35 @@ type RedisJwtHandler struct {
 	client        redis.Cmdable
 	signingMethod jwt.SigningMethod
 	rcExpiration  time.Duration
-
-	//refreshKey []byte
-	//jwtKey     []byte
 }
 
-func NewRedisJwtHandler(client redis.Cmdable) *RedisJwtHandler {
+func NewRedisJwtHandler() Handler {
 	return &RedisJwtHandler{
-		client:        client,
+		client: redis.NewClient(&redis.Options{}),
+
 		signingMethod: jwt.SigningMethodHS512,
 		rcExpiration:  time.Hour * 24 * 7,
-		//refreshKey:    []byte("k6CswdUm77WKcbM683jfuxVsHSpTCwgK"),
-		//jwtKey:        []byte("k6CswdUm77WKcbM68UQUuxVsHSpTCwgK"),
 	}
+}
+
+//func NewRedisJwtHandler(client redis.Cmdable) Handler {
+//	return &RedisJwtHandler{
+//		client:        client, // ClearToken, CheckSession 使用
+//		signingMethod: jwt.SigningMethodHS512,
+//		rcExpiration:  time.Hour * 24 * 7,
+//	}
+//}
+
+func (h *RedisJwtHandler) ExtractToken(ctx *gin.Context) string {
+	auth := ctx.GetHeader("Authorization")
+	if auth == "" {
+		return auth
+	}
+	segments := strings.Split(auth, " ")
+	if len(segments) != 2 {
+		return ""
+	}
+	return segments[1]
 }
 
 // ClearToken 清空Token方法
@@ -99,21 +116,3 @@ func (h *RedisJwtHandler) SetLoginToken(ctx *gin.Context, uid string) error {
 	}
 	return h.SetJWTToken(ctx, uid, ssid)
 }
-
-type RefreshClaims struct {
-	jwt.RegisteredClaims
-	Uid  string
-	Ssid string
-}
-
-type UserClaims struct {
-	jwt.RegisteredClaims
-	Uid       string
-	Ssid      string
-	UserAgent string
-}
-
-var (
-	RefreshKey = []byte("k6CswdUm77WKcbM683jfuxVsHSpTCwgK")
-	JwtKey     = []byte("k6CswdUm77WKcbM68UQUuxVsHSpTCwgK")
-)

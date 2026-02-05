@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"golang/internal/web/ijwt"
+	"golang/pkg/ginx"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -19,8 +20,8 @@ func NewLoginJWTMiddlewareBuilder(hdl ijwt.Handler) *LoginJWTMiddlewareBuilder {
 }
 
 func (m *LoginJWTMiddlewareBuilder) CheckLogin() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		path := c.Request.URL.Path
+	return func(ctx *gin.Context) {
+		path := ctx.Request.URL.Path
 		allowURL := []string{
 			"/api/v1/users/signup",
 			"/api/v1/users/login",
@@ -32,7 +33,7 @@ func (m *LoginJWTMiddlewareBuilder) CheckLogin() gin.HandlerFunc {
 		}
 
 		// 按约定,JWT签发的TOKEN需要于请求头中的Authorization中带回(Bearer xxx)
-		tokenStr := m.ExtractToken(c)
+		tokenStr := m.ExtractToken(ctx)
 
 		var uc ijwt.UserClaims
 		token, err := jwt.ParseWithClaims(tokenStr, &uc, func(token *jwt.Token) (interface{}, error) {
@@ -41,40 +42,22 @@ func (m *LoginJWTMiddlewareBuilder) CheckLogin() gin.HandlerFunc {
 		})
 		if err != nil {
 			// 伪造的TOKEN信息
-			c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized, "message": "用户身份认证无效,请尝试重新登录!"})
-			c.AbortWithStatus(http.StatusUnauthorized)
+			ctx.JSON(http.StatusOK, ginx.Result{Msg: "服务器繁忙..."})
+			ctx.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
 		if !token.Valid { // token == nil || !token.Valid || expireTime.Before(time.now())
 			// 解析TOKEN为非法形式,过期形式
-			c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized, "message": "用户身份认证无效,请尝试重新登录!"})
-			c.AbortWithStatus(http.StatusUnauthorized)
+			ctx.JSON(http.StatusOK, ginx.Result{Msg: "服务器繁忙..."})
+			ctx.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
-		//expireTime := uc.ExpiresAt
 
-		// ExpireTime - Now = Keep Refresh Duration
-		//if expireTime.Sub(time.Now()) < time.Minute*5 {
-		//	uc.ExpiresAt = ijwt.NewNumericDate(time.Now().Add(time.Minute * 30))
-		//	tokenStr, err = token.SignedString([]byte("secret"))
-		//	c.Header("x-ijwt-token", tokenStr)
-		//	if err != nil {
-		//		log.Println()
-		//	}
+		//err = m.CheckSession(ctx, uc.Ssid)
+		//if err != nil {
+		//	ctx.AbortWithStatus(http.StatusUnauthorized)
+		//	return
 		//}
-
-		// 前述Token校验后,查阅Redis
-		//cnd, err := m.cmd.Exists(c, fmt.Sprintf("users:ssid:%s", uc.Ssid)).Result()
-		//if err != nil || cnd > 0 {
-		//	c.JSON(http.StatusUnauthorized, gin.H{"code": http.StatusUnauthorized, "message": "用户身份认证无效,请尝试重新登录!"})
-		//	c.AbortWithStatus(http.StatusUnauthorized)
-		//}
-
-		err = m.CheckSession(c, uc.Ssid)
-		if err != nil {
-			c.AbortWithStatus(http.StatusUnauthorized)
-			return
-		}
-		c.Set("uc", uc)
+		ctx.Set("uc", uc)
 	}
 }

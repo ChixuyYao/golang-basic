@@ -12,6 +12,7 @@ import (
 	"golang/internal/repository/dao"
 	"golang/internal/service"
 	"golang/internal/web"
+	"golang/internal/web/ijwt"
 	"golang/ioc"
 )
 
@@ -19,19 +20,12 @@ import (
 
 func InitWebServer() *gin.Engine {
 	db := ioc.InitDB()
-	v := ioc.InitGinMiddleware(db)
-	languagesDao := dao.NewLanguageDao(db)
-	languageRepository := repository.NewLanguageRepository(languagesDao)
-	languagesService := service.NewLanguagesService(languageRepository)
-	languagesHandler := web.NewLanguageHandler(languagesService)
+	handler := ijwt.NewRedisJwtHandler()
+	v := ioc.InitGinMiddleware(db, handler)
 	userDao := dao.NewUserDao(db)
 	userRepository := repository.NewUserRepository(userDao)
 	userService := service.NewUserService(userRepository)
-	usersHandler := web.NewUserHandler(userService)
-	categoriesDao := dao.NewCategoriesDao(db)
-	categoriesRepository := repository.NewCategoriesRepository(categoriesDao)
-	categoriesService := service.NewCategoriesService(categoriesRepository)
-	categoriesHandler := web.NewCategoriesHandler(categoriesService)
-	engine := ioc.InitWebServer(v, languagesHandler, usersHandler, categoriesHandler)
+	usersHandler := web.NewUserHandler(userService, handler)
+	engine := ioc.InitWebServer(v, usersHandler)
 	return engine
 }

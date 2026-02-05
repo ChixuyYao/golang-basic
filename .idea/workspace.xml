@@ -4,37 +4,67 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0d74c11-d330-4133-89ec-882a602efe9a" name="更改" comment="feat:增加Reminder模块表设计(初步设计:注释)">
-      <change afterPath="$PROJECT_DIR$/internal/domain/goals.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/reminder.categories.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/domain/tasks.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repository/categories.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder.categories.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder.goals.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/repository/dao/reminder.tasks.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/service/categories.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/web/categories.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/web/ijwt/redis.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/web/ijwt/types.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/web/result.go" afterDir="false" />
+    <list default="true" id="d0d74c11-d330-4133-89ec-882a602efe9a" name="更改" comment="feat:引入Prometheus,Grafana,OpenTelemetry">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <list id="a45f85a7-2d19-4deb-87ac-1cd66c19f3c8" name="撤销" comment="feat: 引入Prometheus,Grafana,OpenTelemery">
+      <change afterPath="$PROJECT_DIR$/config/dev.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/repository/dao/article.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/web/article.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/web/intergration/article_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/web/intergration/startup/db.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/web/intergration/startup/redis.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/web/intergration/startup/wire.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ioc/otel.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ioc/redis.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opentelemetry/opentelemetry_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/ginx/prometheus/prometheus.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/ginx/wrapper.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/gormx/prometheus.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/logger/fields.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/logger/no_logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/logger/types.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/logger/zap_logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prometheus.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prometheus/prometheus_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sarama/comsumer_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sarama/producer_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/syntax/channel/channel_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/goals.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/languages.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/reminder.categories.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/tasks.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/user_attributes.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/categories.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/repository/dao/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/dao/languages.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/world.languages.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/dao/partOfSpeech.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/world.partOfSpeech.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder/categories.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder/goals.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder/taskPrerequisites.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/reminder.taskPrerequisites.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder/tasks.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/dao/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/repository/dao/words.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/dao/world.words.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder.categories.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder.goals.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder.taskPrerequisites.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/reminder.tasks.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/user_attributes.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/world.languages.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/world.partOfSpeech.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/dao/world.words.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/languages.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/categories.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/languages.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/web/categories.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/web/ijwt/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/ijwt/redis.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/web/ijwt/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/ijwt/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/web/languages.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/web/middleware/login_jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/middleware/login_jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/web/middleware/login_jwt_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/web/result.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/ginx/result.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/web/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/web/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ioc/gorm_hooks.go" beforeDir="false" afterPath="$PROJECT_DIR$/ioc/gorm_hooks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ioc/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/ioc/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ioc/gorm_hooks.go" beforeDir="false" afterPath="$PROJECT_DIR$/ioc/hooks.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ioc/web.go" beforeDir="false" afterPath="$PROJECT_DIR$/ioc/web.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/response.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/uuid.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/wire.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wire_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/wire_gen.go" afterDir="false" />
     </list>
@@ -54,7 +84,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="language" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -76,6 +106,40 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+      <ranges>
+        <range start1="6" end1="19" start2="6" end2="32" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="20" end1="20" start2="33" end2="34" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="22" end1="22" start2="36" end2="42" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="23" end1="31" start2="43" end2="58" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="32" end1="33" start2="59" end2="60" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="34" end1="35" start2="61" end2="63" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="37" end1="37" start2="65" end2="67" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="56" end1="57" start2="86" end2="87" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="78" end1="78" start2="108" end2="142" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="95" end1="95" start2="159" end2="160" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="102" end1="102" start2="167" end2="172" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="108" end1="109" start2="178" end2="180" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="124" end1="124" start2="195" end2="198" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="126" end1="129" start2="200" end2="200" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="141" end1="142" start2="212" end2="213" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="143" end1="144" start2="214" end2="215" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="146" end1="147" start2="217" end2="218" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="150" end1="150" start2="221" end2="222" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="152" end1="153" start2="224" end2="225" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="154" end1="155" start2="226" end2="227" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="157" end1="158" start2="229" end2="230" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="161" end1="162" start2="233" end2="234" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="164" end1="174" start2="236" end2="238" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="176" end1="186" start2="240" end2="251" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="191" end1="195" start2="256" end2="259" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="218" end1="218" start2="282" end2="305" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="224" end1="225" start2="311" end2="316" changelist="d0d74c11-d330-4133-89ec-882a602efe9a" />
+        <range start1="230" end1="238" start2="321" end2="324" changelist="a45f85a7-2d19-4deb-87ac-1cd66c19f3c8" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
@@ -93,6 +157,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultGoTemplateProperty": "Go File",
+    "Docker.docker-compose.yaml.prometheus: Compose 部署.executor": "Run",
     "Go 构建.go build golang.executor": "Debug",
     "Go 测试.go test golang/internal/repository/dao.executor": "Debug",
     "Go 测试.golang/internal/rbac/web/middleware 中的 TestName.executor": "Run",
@@ -100,13 +165,19 @@
     "Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Select.executor": "Debug",
     "Go 测试.golang/internal/repository/dao 中的 TestName.executor": "Run",
     "Go 测试.golang/internal/uitls 中的 TestName.executor": "Debug",
+    "Go 测试.golang/sarama 中的 TestSyncProducer.executor": "Debug",
+    "Go 测试.golang/syntax/channel 中的 TestChannel.executor": "Run",
+    "Go 测试.golang/syntax/channel 中的 TestChannelBlocking.executor": "Debug",
+    "Go 测试.golang/syntax/channel 中的 TestChannelLoop.executor": "Run",
+    "Go 测试.golang/syntax/channel 中的 TestChannelSelect.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "language",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "article",
     "go.sdk.automatically.set": "true",
     "last_opened_file_path": "/Users/chis/Desktop/项目综合汇总/golang-basic",
     "nodejs_package_manager_path": "npm",
@@ -122,11 +193,11 @@
       <recent name="$PROJECT_DIR$/internal/repository/dao/reminder" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pkg/gormx" />
+      <recent name="$PROJECT_DIR$/pkg/ginx/prometheus" />
+      <recent name="$PROJECT_DIR$/pkg/ginx" />
       <recent name="$PROJECT_DIR$/internal/repository/dao" />
       <recent name="$PROJECT_DIR$/internal/domain" />
-      <recent name="$PROJECT_DIR$/internal/domain/reminder" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/internal/service" />
     </key>
   </component>
   <component name="RunManager" selected="Go 构建.go build golang">
@@ -139,60 +210,53 @@
       <filePath value="$PROJECT_DIR$/main.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go test golang/internal/repository/dao" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="golang/syntax/channel 中的 TestChannelLoop" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="golang-basic" />
-      <working_directory value="$PROJECT_DIR$/internal/repository/dao" />
+      <working_directory value="$PROJECT_DIR$/syntax/channel" />
       <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="golang/internal/repository/dao" />
+      <package value="golang/syntax/channel" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
+      <pattern value="^\QTestChannelLoop\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="golang/internal/repository/dao 中的 TestGORMUsersDao_Insert" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="golang/syntax/channel 中的 TestChannelSelect" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="golang-basic" />
-      <working_directory value="$PROJECT_DIR$/internal/repository/dao" />
+      <working_directory value="$PROJECT_DIR$/syntax/channel" />
       <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="golang/internal/repository/dao" />
+      <package value="golang/syntax/channel" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestGORMUsersDao_Insert\E$" />
+      <pattern value="^\QTestChannelSelect\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="golang/internal/repository/dao 中的 TestGORMUsersDao_Select" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="golang-basic" />
-      <working_directory value="$PROJECT_DIR$/internal/repository/dao" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="golang/internal/repository/dao" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestGORMUsersDao_Select\E$" />
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
       <method v="2" />
     </configuration>
-    <configuration name="golang/internal/repository/dao 中的 TestName" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="golang-basic" />
-      <working_directory value="$PROJECT_DIR$/internal/repository/dao" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="golang/internal/repository/dao" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestName\E$" />
+    <configuration name="docker-compose.yaml.prometheus: Compose 部署" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="prometheus" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go 构建.go build golang" />
-        <item itemvalue="Go 测试.go test golang/internal/repository/dao" />
-        <item itemvalue="Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Select" />
-        <item itemvalue="Go 测试.golang/internal/repository/dao 中的 TestGORMUsersDao_Insert" />
-        <item itemvalue="Go 测试.golang/internal/repository/dao 中的 TestName" />
+        <item itemvalue="Docker.docker-compose.yaml.prometheus: Compose 部署" />
+        <item itemvalue="Go 测试.golang/syntax/channel 中的 TestChannelLoop" />
+        <item itemvalue="Go 测试.golang/syntax/channel 中的 TestChannelSelect" />
       </list>
     </recent_temporary>
   </component>
@@ -217,25 +281,47 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat:增加Language服务接口" />
     <MESSAGE value="fix:调整整体项目结构,矫正Languages模块代码,改由google-wire生成&#10;-待修改:User模块" />
     <MESSAGE value="feat:增加JWT方式校验用户,变更User模块内容" />
     <MESSAGE value="feat:增加Reminder模块表设计(初步设计:注释)" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:增加Reminder模块表设计(初步设计:注释)" />
+    <MESSAGE value="fix:修正JWT校验,增加长短TOKEN验证机制,引入Logger模块" />
+    <MESSAGE value="feat:引入Apache Kafka(docker-compose配置存在一些bug),给出Producer,Consumer基础使用测试用例" />
+    <MESSAGE value="feat:引入Prometheus,Grafana,OpenTelemetry" />
+    <MESSAGE value="feat: 引入Prometheus,Grafana,OpenTelemery" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 引入Prometheus,Grafana,OpenTelemery" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/internal/service/categories.go</url>
-          <line>26</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/internal/web/categories.go</url>
-          <line>28</line>
-          <option name="timeStamp" value="33" />
+          <url>file://$PROJECT_DIR$/ioc/otel.go</url>
+          <line>36</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

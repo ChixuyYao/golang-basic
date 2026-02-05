@@ -1,6 +1,6 @@
 //go:build wireinject
 
-package main
+package startup
 
 import (
 	"golang/internal/repository"
@@ -17,23 +17,22 @@ import (
 func InitWebServer() *gin.Engine {
 	wire.Build(
 		// 第三方依赖初始化
-		ioc.InitDB,
-		//ioc.InitRedis,
-
-		// Dao层初始化
+		InitRedis,
+		InitDB,
+		// Dao 层初始化
 		dao.NewUserDao,
 
-		// Repository层初始化
+		// Repository 层初始化
 		repository.NewUserRepository,
 
-		// Service层初始化
+		// Service 层初始化
 		service.NewUserService,
 
-		// Handler服务(路由挂载)
+		// Handler 服务(路由挂载)
 		ijwt.NewRedisJwtHandler,
 		web.NewUserHandler,
 
-		// 服务器本身依赖
+		// 其他依赖
 		ioc.InitGinMiddleware,
 		ioc.InitWebServer,
 	)
